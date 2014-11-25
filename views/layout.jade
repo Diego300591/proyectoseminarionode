@@ -1,0 +1,25 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/formulario.css')
+		script(scr='/javascripts/bootstrap.min.js')
+		script(src='/javascripts/jquery-2.1.0.min.js')
+		script(src='/javascripts/pagina.js')
+		script(src='/javascripts/serializeObject.js')
+		script(src='/socket.io/socket.io.js')
+	body
+		ul(class="menu")
+			li(class="active")
+				a(href="/") Principal
+			li(class="active")
+				a(href="/registro/") Registro
+			li(class="active")
+				a(href="/login/") Login
+			li(class="active")
+				a(href="/partidanueva/") Nueva partida
+		br
+		br
+		block content

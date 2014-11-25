@@ -1,0 +1,64 @@
+en partidanueva.jade
+no puedo correr el formulario con checkbox y radio
+
+extends layout
+block content
+	form
+		label(class="control-label") Titulo
+		input(type="text")
+		br
+		label(class="control-label") Tipo de partida
+		input(type="radio", id="publico", name="tipo", value="publico") 
+		  Publico
+		input(type="radio", id="privado", name="tipo", value="privado") 
+		  Privado
+		label(class="control-label") Preguntas
+		input(type="radio") 10
+		input(type="radio") 20
+		input(type="radio") 30
+		input(type="radio") 40
+		input(type="radio") 50
+		label(class="control-label") Tiempo de respuesta
+		input(type="radio") 10 segundos
+		input(type="radio") 15 segundos
+ 		input(type="radio") 20 segundos
+		input(type="radio") 25 segundos
+		input(type="radio") 30 segundos
+		input(type="radio") 35 segundos
+		input(type="radio") 40 segundos
+ 		input(type="radio") 45 segundos
+		input(type="radio") 50 segundos
+		input(type="radio") 55 segundos
+		input(type="radio") 60 segundos
+		label(class="control-label") Categorias
+		input(type="radio") Arte y Literatura
+		input(type="radio") Cine y Television
+ 		input(type="radio") Geografia
+		input(type="radio") Historia
+		input(type="radio") Miscelanea
+		input(type="radio") Musica
+		input(type="radio") Ciencia y Naturaleza
+ 		input(type="radio") Deporte
+
+en pagina.js
+$(function($){
+	var socket=io();
+	$("#partida").submit(function(event) {
+		//enviar
+		socket.emit("partidanueva",$(this).serializeObject());
+		return false;
+	});
+	//escuchar al servidor
+	socket.on("partidanueva",function(server){
+		html="";
+		for (var i=0;i<server.length;i++)
+		{
+			html="";
+			html+="<table><tr><td>TITULO DE PARTIDA</td><td>"+server.titulo[i]+"</td></tr>";
+			html+="<tr><td>TIPO</td><td>"+server.tipo[i]+"</td></tr>";
+			html+="<tr><td>TIEMPO DE RESPUESTA</td><td>"+server.tiempor[i]+"</td><tr>";
+		}
+		$("#container").html(html);
+
+	});
+});
