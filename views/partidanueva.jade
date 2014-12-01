@@ -1,22 +1,92 @@
 extends layout
 block content
 	form#partida
-		label(class="control-label") Titulo
-		input(type="text" name="titulo")
-		br
+		label(class="control-label") Titulo de la partida
+		input(type="text" name="partida")
 		label(class="control-label") Tipo de partida
-		input(type="text" name="tipo")
+		br
+		input(type="radio" name="tipo" value="publico") 
+		label(class="control-label") Publico
+		br
+		input(type="radio" name="tipo" value="privado")
+		label(class="control-label") Privado 
 		br
 		label(class="control-label") Preguntas
-		input(type="text" name="preguntas")
+		br
+		input(type="radio" name="cantidad" value="10") 
+		label(class="control-label") 10
+		br
+		input(type="radio" name="cantidad" value="20") 
+		label(class="control-label") 20
+		br
+		input(type="radio" name="cantidad" value="30") 
+		label(class="control-label") 30
+		br
+		input(type="radio" name="cantidad" value="40")
+		label(class="control-label") 40 
+		br
+		input(type="radio" name="cantidad" value="50")
+		label(class="control-label") 50 
 		br
 		label(class="control-label") Tiempo de respuesta
-		input(type="text" name="tiempor")
+		br
+		input(type="radio" name="tiempo" value="10")
+		label(class="control-label") 10 segundos
+		br 
+		input(type="radio" name="tiempo" value="15")
+		label(class="control-label") 15 segundos
+		br
+		input(type="radio" name="tiempo" value="20")
+		label(class="control-label") 20 segundos
+		br
+		input(type="radio" name="tiempo" value="25")
+		label(class="control-label") 25 segundos
+		br
+		input(type="radio" name="tiempo" value="30")
+		label(class="control-label") 30 segundos 
+		br
+		input(type="radio" name="tiempo" value="35")
+		label(class="control-label") 35 segundos 
+		br
+		input(type="radio" name="tiempo" value="40") 
+		label(class="control-label") 40 segundos
+		br
+		input(type="radio" name="tiempo" value="45")
+		label(class="control-label") 45 segundos 
+		br
+		input(type="radio" name="tiempo" value="50")
+		label(class="control-label") 50 segundos 
+		br
+		input(type="radio" name="tiempo" value="55")
+		label(class="control-label") 55 segundos 
+		br
+		input(type="radio" name="tiempo" value="60")
+		label(class="control-label") 60 segundos 
 		br
 		label(class="control-label") Categorias
-		input(type="text" name="categoria")
 		br
-		button(type="submit" class="btn") Crear Partida
+		input(type="checkbox" name="categorias" value="Arte y Literatura")
+		label(class="control-label") Arte y Literatura 
 		br
+		input(type="checkbox" name="categorias" value="Cine y Television")
+		label(class="control-label") Cine y Television
 		br
-		button(type="submit" class="btn") Cancelar
+		input(type="checkbox" name="categorias" value="Geografia") 
+		label(class="control-label") Geografia
+		br
+		input(type="checkbox" name="categorias" value="Historia")
+		label(class="control-label") Historia 
+		br
+		input(type="checkbox" name="categorias" value="Miscelanea")
+		label(class="control-label") Miscelanea 
+		br
+		input(type="checkbox" name="categorias" value="Musica") 
+		label(class="control-label") Musica
+		br
+		input(type="checkbox" name="categorias" value="Ciencia y Naturaleza") 
+		label(class="control-label") Ciencia y Naturaleza
+		br
+		input(type="checkbox" name="categorias" value="Deportes") 
+		label(class="control-label") Deportes
+		br
+		button(type="submit") Enviar

@@ -57,8 +57,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-
 module.exports = app;
 var nicknames=[];
 var PORT=3000;
@@ -82,7 +80,6 @@ sockets.on("connection",function(socket){
     	return;
     });
 });
-
 var verificarCuenta=function(ins)
 {
 	for(var i=0;i<nicknames.length;i++)

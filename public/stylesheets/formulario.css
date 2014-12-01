@@ -41,3 +41,18 @@ button[type="submit"]:hover{
 	background: #4A88F4;
 	cursor:pointer;
 }
+input[type="radio"]{
+	display:inline-block;
+	width:10px;
+}
+
+input[type="checkbox"]{
+	display: inline-block;
+	width:10px;
+}
+
+label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+}

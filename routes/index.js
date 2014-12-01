@@ -23,7 +23,7 @@ router.get("/chat/",function(req,res){
 router.get("/saladechat/",function(req,res){
 	res.render("saladechat",{title:"Sala"})
 })
-router.get("/salaespera/",function(req,res){
+router.get("/salaespera/P?",function(req,res){
 	res.render("salaespera",{title:"Sala"})
 })
 router.get("/listajugadores/",function(req,res){
