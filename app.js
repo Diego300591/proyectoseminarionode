@@ -79,6 +79,14 @@ sockets.on("connection",function(socket){
     	socket.emit("setnickname",{"server":"El nick no esta disponible"});
     	return;
     });
+    socket.on("mensajes",function(clientedata){
+        if(clientedata.nick===socket.nickname)
+        {
+            sockets.sockets.emit("mensajes",clientedata);
+            return;
+        }
+        sockets.sockets.emit("mensajes",false);
+    });
 });
 var verificarCuenta=function(ins)
 {
