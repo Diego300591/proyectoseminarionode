@@ -69,21 +69,30 @@ sockets.on("connection",function(socket){
     socket.on("mensajes",function(clientedata){
         if(clientedata.nick===socket.nickname)
         {
-            sockets.sockets.emit("mensajes",clientedata);
+            var comando=clientedata.msn.split(" ");
+            if(comando[0]=="join")
+            {
+                var sala=comando[1];
+                sockets.sockets.emit("mensajes",{"nick":"SERVIDOR","msn":"Estas conectado a la sala "+sala});
+                return;
+            } 
+            sockets.to(socket.sala).emit("mensajes",clientedata);
             return;
         }
         sockets.sockets.emit("mensajes",false);
+    });
+    socket.on("get_lista",function(clientedata){
+        sockets.sockets.emit("get_lista",{"lista":nicknames});
     });
     socket.on("partidanueva",function(cliente){
         partidas.push(cliente);
         socket.broadcast.emit("partidanueva",partidas)
     });
-    socket.on("get_lista",function(clientedata){
-        sockets.sockets.emit("get_lista",{"lista":nicknames});
-    });
     socket.on("setnickname",function(clientedata){
     	if(verificarCuenta(clientedata.nick)){
     		nicknames.push(clientedata);
+            socket.sala="general";
+            socket.join("general");
             socket.nickname=clientedata.nick;
     		socket.emit("setnickname",{"server":true});
     		return;
