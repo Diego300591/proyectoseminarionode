@@ -26,6 +26,7 @@ $(function($) {
 		.done(function(html) {
 			$("#content").html(html);
 			enabledchat();
+			getlista();
 		})
 		.fail(function() {
 		
@@ -33,6 +34,19 @@ $(function($) {
 		.always(function() {
 			
  		});		
+	}
+	var mostrarlista=function(listausuarios)
+	{
+		html="";
+		for(var i=0;i<listausuarios.length;i++)
+		{
+			html+="<li>"+listausuarios[i].nick+"</li>";
+		}
+		$("#usuarios").html(html);
+	}
+	var getlista=function()
+	{
+		socket.emit("get_lista",{});
 	}
 	var enabledchat=function()
 	{
@@ -44,6 +58,9 @@ $(function($) {
 			}
 		});
 	}
+	socket.on("get_lista",function(response){
+		mostrarlista(response.lista);
+	});
 	socket.on("mensajes",function(response){
 		console.log(response);
 		$("#mensajes").append("<li>"+response.nick+">"+response.msn+"</li>")

@@ -78,6 +78,9 @@ sockets.on("connection",function(socket){
         partidas.push(cliente);
         socket.broadcast.emit("partidanueva",partidas)
     });
+    socket.on("get_lista",function(clientedata){
+        sockets.sockets.emit("get_lista",{"lista":nicknames});
+    });
     socket.on("setnickname",function(clientedata){
     	if(verificarCuenta(clientedata.nick)){
     		nicknames.push(clientedata);
