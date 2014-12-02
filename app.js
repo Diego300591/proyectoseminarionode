@@ -73,7 +73,10 @@ sockets.on("connection",function(socket){
             if(comando[0]=="join")
             {
                 var sala=comando[1];
-                sockets.sockets.emit("mensajes",{"nick":"SERVIDOR","msn":"Estas conectado a la sala "+sala});
+                sockets.to(socket.sala).emit("mensajes",{"nick":"SERVIDOR","msn":"El usuario "+socket.nickname+" Esta conectado a la sala "+sala});
+                socket.leave(socket.sala);
+                socket.sala=sala;
+                socket.join(sala);
                 return;
             } 
             sockets.to(socket.sala).emit("mensajes",clientedata);
