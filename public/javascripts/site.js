@@ -1,8 +1,9 @@
-$(function($){
+$(function($) {
 	var socket=io();
 	$("#nickname").keydown(function(event) {
 		if(event.keyCode==13 && $(this).val()!="")
 		{
+			console.log(socket);
 			socket.emit("setnickname",{"nick":$(this).val()});
 		}
 	});
@@ -10,7 +11,7 @@ $(function($){
 		if(response.server===true)
 		{
 			loadhtml("/saladechat/");
-			$("#nickname").attr('disabled','true');
+			$("#nickname").attr('disabled', 'true');
 		}else{
 			alert(response.server)
 		}
@@ -24,7 +25,7 @@ $(function($){
 			data: {},
 		})
 		.done(function(html) {
-			$("#container").html(html);
+			$("#content").html(html);
 			enabledchat();
 		})
 		.fail(function() {

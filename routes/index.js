@@ -20,7 +20,7 @@ router.get("/partidanueva/",function(req,res){
 router.get("/chat/",function(req,res){
 	res.render("chat",{})
 })
-router.get("/saladechat/",function(req,res){
+router.get("/saladechat",function(req,res){
 	res.render("saladechat",{title:"Sala"})
 })
 router.get("/salaespera/P?",function(req,res){
