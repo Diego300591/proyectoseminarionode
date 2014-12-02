@@ -39,7 +39,7 @@ $(function($) {
 		$("#menvio").keydown(function(event) {
 			if(event.keyCode==13)
 			{
-				socket.emit("mensajes",{"nick":$("nickname").val(),"msn":$(this).val()})
+				socket.emit("mensajes",{"nick":$("#nickname").val(),"msn":$(this).val()})
 				$(this).val("");
 			}
 		});

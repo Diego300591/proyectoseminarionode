@@ -66,19 +66,6 @@ var http=app.listen(PORT,function(){
 var partidas=Array();
 var sockets=io(http);
 sockets.on("connection",function(socket){
-    socket.on("partidanueva",function(cliente){
-        partidas.push(cliente);
-        socket.broadcast.emit("partidanueva",partidas)
-    });
-    socket.on("setnickname",function(clientedata){
-    	if(verificarCuenta(clientedata.nick)){
-    		nicknames.push(clientedata);
-    		socket.emit("setnickname",{"server":true});
-    		return;
-    	}
-    	socket.emit("setnickname",{"server":"El nick no esta disponible"});
-    	return;
-    });
     socket.on("mensajes",function(clientedata){
         if(clientedata.nick===socket.nickname)
         {
@@ -87,6 +74,20 @@ sockets.on("connection",function(socket){
         }
         sockets.sockets.emit("mensajes",false);
     });
+    socket.on("partidanueva",function(cliente){
+        partidas.push(cliente);
+        socket.broadcast.emit("partidanueva",partidas)
+    });
+    socket.on("setnickname",function(clientedata){
+    	if(verificarCuenta(clientedata.nick)){
+    		nicknames.push(clientedata);
+            socket.nickname=clientedata.nick;
+    		socket.emit("setnickname",{"server":true});
+    		return;
+    	}
+    	socket.emit("setnickname",{"server":"El nick no esta disponible"});
+    	return;
+    });  
 });
 var verificarCuenta=function(ins)
 {
