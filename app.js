@@ -9,9 +9,18 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var mysql=require("./database/mysql.js");
 //llamada a socket.io
 var io=require("socket.io");
-
+var query=mysql({
+    host:"localhost",
+    user:"root",
+    password:"",
+    database:"trivia"
+});
+/*query.get("partida").execute(function(rows){
+    console.log(rows)*/
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
