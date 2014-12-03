@@ -19,8 +19,8 @@ var query=mysql({
     database:"trivia"
 });
 /*query.get("partida").execute(function(rows){
-    console.log(rows)*/
-});
+    console.log(rows);
+});*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -101,26 +101,39 @@ sockets.on("connection",function(socket){
         socket.broadcast.emit("partidanueva",partidas)
     });
     socket.on("setnickname",function(clientedata){
-    	if(verificarCuenta(clientedata.nick)){
-    		nicknames.push(clientedata);
+        if(verificarCuenta(clientedata.nick,socket)){
+            nicknames.push(clientedata);
             socket.sala="general";
             socket.join("general");
             socket.nickname=clientedata.nick;
-    		socket.emit("setnickname",{"server":true});
-    		return;
-    	}
-    	socket.emit("setnickname",{"server":"El nick no esta disponible"});
-    	return;
+            socket.emit("setnickname",{"server":true});
+            return;
+        }
+        socket.emit("setnickname",{"server":"El nick no esta disponible"});
+        return;
     });  
 });
-var verificarCuenta=function(ins)
+var verificarCuenta=function(ins,socket)
 {
-	for(var i=0;i<nicknames.length;i++)
-	{
-		if(nicknames[i].nick==ins)
-		{
-			return false;
-		}
-	}
-	return true;
+    for(var i=0;i<nicknames.length;i++)
+    {
+        if(nicknames[i].nick==ins)
+        {
+            return false;
+        }
+    }
+    query.get("usuario").where({nick:ins}).execute(function(rows){
+        if(rows.length==0)
+        {
+            query.save("usuario",{nick:ins,nombres:ins,apellidos:ins},function(r){
+                socket.idus=r.insertId;
+                console.log(socket.idus);
+            })
+        }else{
+            socket.idus=rows[0].id;
+            console.log(socket.idus);
+        }
+        console.log();
+    })
+    return true;
 }
