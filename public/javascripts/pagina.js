@@ -13,7 +13,7 @@ $(function($){
 			html+="<table border='1' width='300'><tr><td>TITULO DE PARTIDA  </td><td>"+server[i].partida+"</td></tr>";
 			html+="<tr><td>TIPO  </td><td>"+server[i].tipo+"</td></tr>";
 			html+="<tr><td>TIEMPO DE RESPUESTA  </td><td>"+server[i].tiempo+"</td><tr>";
-			html+="<tr><td colspan='2'><input type='submit' value='jugar'></td></tr></table>";
+			html+="<tr><td colspan='2'><a href='/salaespera/:partida'><input type='submit' action='' value='jugar'></a></td></tr></table>";
 		}
 		$("#container").html(html);
 	});
