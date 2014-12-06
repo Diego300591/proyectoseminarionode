@@ -3,7 +3,21 @@ block content
 	div(class="panel panel-default")
 		div(class="panel-heading") Sala de espera
 		div(class="panel-body")
-			div(class="input-group")
-				span(class="input-group-addon") 
-				input(type="text", class="form-control" placeholder="partida" id="partida")
-	div#content
+			table(class="table")
+				tr
+					th Jugadores
+					th Estado
+		input(type="submit" value=".::EMPEZAR::.")
+	div(class="panel panel-default")
+		div(class="panel-heading") CHAT
+		div(class="panel-body")
+			table(class="table")
+				tr
+					th Mensaje
+					th Lista
+				td
+					ul#mensajes
+				td
+					ul#usuarios
+	div(class="panel-footer")
+		input(type="text",class="form-control",placeholder="mensaje aqui" id="menvio")
