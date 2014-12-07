@@ -29,3 +29,6 @@ router.get("/salaespera/:partida",function(req,res){
 router.get("/listajugadores/",function(req,res){
 	res.render("listajugadores",{title:"Sala"})
 })
+router.get("/chatactivo/",function(req,res){
+	res.render("salonchat",{title:"Sala"})
+})
