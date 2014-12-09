@@ -12,4 +12,4 @@ function acabarCuentaAtras(){
 	alert("¡TIEMPO!");
 }
 
-var temporizador=setInterval(function(){restar()},10000);
+var temporizador=setInterval(function(){restar()},10000); //10s = 10000ms
