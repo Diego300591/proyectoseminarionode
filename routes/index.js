@@ -32,3 +32,6 @@ router.get("/listajugadores/",function(req,res){
 router.get("/chatactivo/",function(req,res){
 	res.render("salonchat",{title:"Sala"})
 })
+router.get("/juego/",function(req,res){
+	res.render("juego",{title:"Sala"})
+})
